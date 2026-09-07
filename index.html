@@ -245,7 +245,8 @@ function coastDetail(){
 const riversLayer=L.geoJSON(RIVERS,{style:riverStyle,interactive:false}).addTo(map);
 const lakesLayer=L.geoJSON(LAKES,{style:lakeStyle,interactive:false}).addTo(map);
 map.on('zoomend',()=>{ riversLayer.setStyle(riverStyle); coast50.setStyle(coastStyle); if(coast10) coast10.setStyle(coastStyle); coastDetail(); });
-function worldView(){ map.fitBounds([[-58,-170],[78,180]],{animate:false}); }
+const WORLD_B=[[-58,-170],[78,180]];
+function worldView(){ map.fitBounds(WORLD_B,{animate:false}); }
 worldView();
 const marks=L.layerGroup().addTo(map);
 const HI={}; let hiPromise=null;
@@ -287,6 +288,7 @@ function nextItem(){
   marks.clearLayers(); G.guess=null; G.pin=null; G.piece=null; G.locked=false; G.tries=0; G.puzzle=(G.mode==='country'&&G.tier===0); $('hud-result').hidden=true; $('hud-shape').hidden=true;
   if(G.i>=G.items.length) return endRound(false);
   const it=G.items[G.i]; $('hud-round').textContent=`${G.i+1} / ${G.items.length}`; $('hud-score').textContent=G.score;
+  if(CHOICE_MODES.has(G.mode)||G.puzzle) worldView(); else map.flyToBounds(WORLD_B,{duration:.8});
   if(G.mode==='city'){ $('hud-prompt').innerHTML=`Where is <em>${it.n}</em>, ${it.cd}?`; $('bar').innerHTML=`<button class="btn ghost" id="b-skip">Skip</button><button class="btn primary" id="b-lock" disabled>Tap the map to drop a pin</button>`; $('b-lock').addEventListener('click',lockIn); $('b-skip').addEventListener('click',()=>{ score(0,'Skipped'); }); }
   if(G.mode==='country'&&G.puzzle){ $('hud-prompt').innerHTML=`Drag <em>${it.name}</em> into place.`; $('hud-shape').hidden=false; $('hud-shape').innerHTML=`<span style="font-size:13px;color:var(--ink-soft)">${it.cont} &middot; ${Math.round(it.area/1000).toLocaleString()},000 km&sup2;</span>`; $('bar').innerHTML=`<button class="btn ghost" id="b-skip">Skip</button><button class="btn primary" id="b-lock" disabled>Drag the orange shape into place</button>`; $('b-lock').addEventListener('click',lockIn); $('b-skip').addEventListener('click',()=>{ score(0,'Skipped'); }); makePiece(it); if(G.i===0) toast('Drag the orange shape to where it belongs'); }
   if(G.mode==='country'&&!G.puzzle){ $('hud-prompt').innerHTML=`Where does <em>${it.name}</em> belong?`; $('hud-shape').hidden=false; $('hud-shape').innerHTML=outlineSVG(geomOf(it))+`<span style="font-size:13px;color:var(--ink-soft)">${it.cont}<br>${Math.round(it.area/1000).toLocaleString()},000 km²</span>`; $('bar').innerHTML=`<button class="btn ghost" id="b-skip">Skip</button><button class="btn primary" id="b-lock" disabled>Tap the map to drop a pin</button>`; $('b-lock').addEventListener('click',lockIn); $('b-skip').addEventListener('click',()=>{ score(0,'Skipped'); }); }
@@ -353,7 +355,7 @@ function score(pts,note){
   $('b-next').addEventListener('click',()=>{ G.i++; nextItem(); });
 }
 function endRound(quit){
-  $('hud').hidden=true; $('bar').hidden=true; $('topright').hidden=true; marks.clearLayers();
+  $('hud').hidden=true; $('bar').hidden=true; $('topright').hidden=true; marks.clearLayers(); worldView();
   if(quit&&G.rows.length===0){ $('start').hidden=false; return; }
   const total=G.score; const k=bestKey(); const prev=S.best[k]||0; const isBest=!quit&&total>prev; if(isBest){ S.best[k]=total; save(); }
   $('end-score').innerHTML=`${total}<small>of ${G.rows.length*100}</small>`; $('end-best').textContent=isBest?'New best on this mode and level.':(prev?`Best: ${prev}`:'');
