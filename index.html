@@ -136,8 +136,8 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
     <h1>Map Game<small>A world map with no names and no borders. Only mountains, rivers, deserts, and coasts to steer by.</small></h1>
     <div class="label">Mode</div>
     <div class="modes" id="modes">
-      <button class="mode on" data-mode="city"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M14 36c-4-14 12-26 30-22 10 2 18-4 30-2 14 2 22 12 16 24-6 12-20 10-32 14-14 4-28 2-36-6-5-4-7-6-8-8z"/><circle class="ring" cx="58" cy="38" r="12"/><path class="ipin" d="M58 38l-8-12a9.5 9.5 0 1 1 16 0z"/><circle class="dot" cx="58" cy="21" r="3"/></svg><b>Find the city</b><span>Tap where the named city is. Closer is better.</span></button>
-      <button class="mode" data-mode="country"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M56 46c-6-14 8-30 26-26 10 2 20-2 28 6 8 10 4 24-8 30-12 6-26 4-38-2-5-2-7-5-8-8z"/><path class="target" transform="translate(66 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="piece" transform="translate(6 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="arrow" d="M47 36h13m-5-5l5 5-5 5"/></svg><b>Place the outline</b><span>Explorer: drag the country's shape into place like a puzzle piece. Higher levels: tap where its silhouette belongs.</span></button>
+      <button class="mode on" data-mode="country"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M56 46c-6-14 8-30 26-26 10 2 20-2 28 6 8 10 4 24-8 30-12 6-26 4-38-2-5-2-7-5-8-8z"/><path class="target" transform="translate(66 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="piece" transform="translate(6 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="arrow" d="M47 36h13m-5-5l5 5-5 5"/></svg><b>Drag the country</b><span>Its shape appears as a puzzle piece. Drag it to where it belongs. Higher levels start zoomed to the continent.</span></button>
+      <button class="mode" data-mode="city"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M14 36c-4-14 12-26 30-22 10 2 18-4 30-2 14 2 22 12 16 24-6 12-20 10-32 14-14 4-28 2-36-6-5-4-7-6-8-8z"/><circle class="ring" cx="58" cy="38" r="12"/><path class="ipin" d="M58 38l-8-12a9.5 9.5 0 1 1 16 0z"/><circle class="dot" cx="58" cy="21" r="3"/></svg><b>Find the city</b><span>Tap where the named city is. Closer is better.</span></button>
       <button class="mode" data-mode="name"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M8 36c-3-12 10-22 26-18 8 2 14-2 22-2 6 0 8 6 6 12-3 10-14 8-24 14-10 6-20 6-26 0-3-3-4-4-4-6z"/><path class="ipin white" d="M36 40l-8-12a9.5 9.5 0 1 1 16 0z"/><text class="q" x="36" y="27" text-anchor="middle">?</text><rect class="chip" x="74" y="10" width="38" height="12" rx="4"/><rect class="txt" x="80" y="15" width="18" height="2.5" rx="1"/><rect class="chip good" x="74" y="26" width="38" height="12" rx="4"/><rect class="txt on" x="80" y="31" width="22" height="2.5" rx="1"/><rect class="chip" x="74" y="42" width="38" height="12" rx="4"/><rect class="txt" x="80" y="47" width="14" height="2.5" rx="1"/></svg><b>Name the city</b><span>A pin appears. Pick the city from six nearby choices. Countries shown only at Explorer.</span></button>
       <button class="mode" data-mode="whichCountry"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M6 38c-4-14 10-26 28-22 10 2 18-4 28-2 8 2 10 10 6 18-5 10-16 10-26 14-12 4-24 2-32-4-3-2-4-3-4-4z"/><path class="border" d="M16 34c0-8 10-14 20-12 8 2 14-2 20 2 4 4 2 12-4 16-8 4-16 6-26 2-6-2-10-4-10-8z"/><path class="ipin white" d="M34 36l-8-12a9.5 9.5 0 1 1 16 0z"/><text class="q" x="34" y="23" text-anchor="middle">?</text><rect class="chip" x="74" y="10" width="38" height="12" rx="4"/><rect class="txt" x="80" y="15" width="16" height="2.5" rx="1"/><rect class="chip" x="74" y="26" width="38" height="12" rx="4"/><rect class="txt" x="80" y="31" width="20" height="2.5" rx="1"/><rect class="chip good" x="74" y="42" width="38" height="12" rx="4"/><rect class="txt on" x="80" y="47" width="14" height="2.5" rx="1"/></svg><b>Name the country</b><span>A pin appears. Pick the country from six neighbors.</span></button>
     </div>
@@ -191,22 +191,6 @@ const EXCLUDE=new Set(['N. Cyprus','Somaliland','Fr. S. Antarctic Lands','Falkla
 
 // ---------- Geometry ----------
 function rings(geom){ return geom.type==='Polygon'?[geom.coordinates]:geom.coordinates; } // list of polygons, each list of rings [lon,lat]
-function inside(geom,lat,lon){
-  for(const poly of rings(geom)){ let inOuter=false, inHole=false;
-    poly.forEach((ring,ri)=>{ let c=false; for(let i=0,j=ring.length-1;i<ring.length;j=i++){ const xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1]; if(((yi>lat)!==(yj>lat))&&(lon<(xj-xi)*(lat-yi)/(yj-yi)+xi)) c=!c; } if(ri===0) inOuter=c; else if(c) inHole=true; });
-    if(inOuter&&!inHole) return true; }
-  return false;
-}
-function borderKm(geom,lat,lon){ let best=Infinity; for(const poly of rings(geom)) for(const ring of poly) for(const p of ring){ const d=havKm([lat,lon],[p[1],p[0]]); if(d<best) best=d; } return best; }
-function bboxOf(geom){ let w=180,s=90,e=-180,n=-90; for(const poly of rings(geom)) for(const ring of poly) for(const p of ring){ if(p[0]<w)w=p[0]; if(p[0]>e)e=p[0]; if(p[1]<s)s=p[1]; if(p[1]>n)n=p[1]; } return [[s,w],[n,e]]; }
-function outlineSVG(geom){
-  const polys=rings(geom).map(poly=>poly[0]); let lons=[]; polys.forEach(r=>r.forEach(p=>lons.push(p[0])));
-  const wrap=Math.max(...lons)-Math.min(...lons)>180; const fx=x=>wrap&&x<0?x+360:x;
-  let w=Infinity,s=Infinity,e=-Infinity,n=-Infinity; polys.forEach(r=>r.forEach(p=>{ const x=fx(p[0]); if(x<w)w=x; if(x>e)e=x; if(p[1]<s)s=p[1]; if(p[1]>n)n=p[1]; }));
-  const k=Math.cos((s+n)/2*Math.PI/180); const W=(e-w)*k, H=(n-s); const sc=Math.min(108/W,80/H); const ox=(120-W*sc)/2, oy=(90-H*sc)/2;
-  const d=polys.map(r=>r.map((p,i)=>(i?'L':'M')+((fx(p[0])-w)*k*sc+ox).toFixed(1)+' '+((n-p[1])*sc+oy).toFixed(1)).join('')+'Z').join('');
-  return `<svg viewBox="0 0 120 90" aria-hidden="true"><path d="${d}"/></svg>`;
-}
 function pieceOf(geom){
   const polys=rings(geom); let lo=Infinity,hi=-Infinity,neg=0,tot=0;
   polys.forEach(poly=>poly[0].forEach(p=>{ if(p[0]<lo)lo=p[0]; if(p[0]>hi)hi=p[0]; if(p[0]<0)neg++; tot++; }));
@@ -259,7 +243,7 @@ function pinIcon(cls,label){ return L.divIcon({className:'',html:`<div class="pi
 const KEY='blank-atlas-v1';
 let S={best:{}}; try{ S=Object.assign(S,JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){}
 const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} };
-const G={mode:'city',tier:0,items:[],i:0,score:0,rows:[],guess:null,pin:null,locked:false,tries:0,puzzle:false,piece:null,base:null,off:null,pbox:null};
+const G={mode:'country',tier:0,items:[],i:0,score:0,rows:[],guess:null,pin:null,locked:false,tries:0,puzzle:false,piece:null,handle:null,base:null,off:null,pbox:null};
 const bestKey=()=>G.mode+':'+G.tier;
 
 // ---------- Start screen ----------
@@ -285,13 +269,12 @@ function startRound(){
   if(G.mode==='country'){ $('hud-prompt').textContent='Loading country shapes'; $('bar').innerHTML=''; loadHi().then(nextItem); } else nextItem();
 }
 function nextItem(){
-  marks.clearLayers(); G.guess=null; G.pin=null; G.piece=null; G.locked=false; G.tries=0; G.puzzle=(G.mode==='country'&&G.tier===0); $('hud-result').hidden=true; $('hud-shape').hidden=true;
+  marks.clearLayers(); G.guess=null; G.pin=null; G.piece=null; G.handle=null; G.locked=false; G.tries=0; G.puzzle=(G.mode==='country'); $('hud-result').hidden=true; $('hud-shape').hidden=true;
   if(G.i>=G.items.length) return endRound(false);
   const it=G.items[G.i]; $('hud-round').textContent=`${G.i+1} / ${G.items.length}`; $('hud-score').textContent=G.score;
-  if(CHOICE_MODES.has(G.mode)||G.puzzle) worldView(); else map.flyToBounds(WORLD_B,{duration:.8});
+  if(G.mode==='city') map.flyToBounds(WORLD_B,{duration:.8}); else worldView();
   if(G.mode==='city'){ $('hud-prompt').innerHTML=`Where is <em>${it.n}</em>, ${it.cd}?`; $('bar').innerHTML=`<button class="btn ghost" id="b-skip">Skip</button><button class="btn primary" id="b-lock" disabled>Tap the map to drop a pin</button>`; $('b-lock').addEventListener('click',lockIn); $('b-skip').addEventListener('click',()=>{ score(0,'Skipped'); }); }
-  if(G.mode==='country'&&G.puzzle){ $('hud-prompt').innerHTML=`Drag <em>${it.name}</em> into place.`; $('hud-shape').hidden=false; $('hud-shape').innerHTML=`<span style="font-size:13px;color:var(--ink-soft)">${it.cont} &middot; ${Math.round(it.area/1000).toLocaleString()},000 km&sup2;</span>`; $('bar').innerHTML=`<button class="btn ghost" id="b-skip">Skip</button><button class="btn primary" id="b-lock" disabled>Drag the orange shape into place</button>`; $('b-lock').addEventListener('click',lockIn); $('b-skip').addEventListener('click',()=>{ score(0,'Skipped'); }); makePiece(it); if(G.i===0) toast('Drag the orange shape to where it belongs'); }
-  if(G.mode==='country'&&!G.puzzle){ $('hud-prompt').innerHTML=`Where does <em>${it.name}</em> belong?`; $('hud-shape').hidden=false; $('hud-shape').innerHTML=outlineSVG(geomOf(it))+`<span style="font-size:13px;color:var(--ink-soft)">${it.cont}<br>${Math.round(it.area/1000).toLocaleString()},000 km²</span>`; $('bar').innerHTML=`<button class="btn ghost" id="b-skip">Skip</button><button class="btn primary" id="b-lock" disabled>Tap the map to drop a pin</button>`; $('b-lock').addEventListener('click',lockIn); $('b-skip').addEventListener('click',()=>{ score(0,'Skipped'); }); }
+  if(G.mode==='country'){ $('hud-prompt').innerHTML=`Drag <em>${it.name}</em> into place.`; $('hud-shape').hidden=false; $('hud-shape').innerHTML=`<span style="font-size:13px;color:var(--ink-soft)">${it.cont} &middot; ${Math.round(it.area/1000).toLocaleString()},000 km&sup2;</span>`; $('bar').innerHTML=`<button class="btn ghost" id="b-skip">Skip</button><button class="btn primary" id="b-lock" disabled>Drag the orange shape into place</button>`; $('b-lock').addEventListener('click',lockIn); $('b-skip').addEventListener('click',()=>{ score(0,'Skipped'); }); makePiece(it); if(G.i===0) toast('Drag the orange shape to where it belongs'); }
   if(G.mode==='name'){ $('hud-prompt').innerHTML=`Which city is at the <em>white pin</em>?`; L.marker([it.la,it.lo],{icon:pinIcon('ask',''),interactive:false}).addTo(marks); map.flyTo([it.la,it.lo],Math.max(map.getZoom(),3.5),{duration:.8});
     const near=CITIES.filter(c=>c!==it&&c.cont===it.cont&&c.t<=Math.max(G.tier,1)).sort((a,b)=>havKm([it.la,it.lo],[a.la,a.lo])-havKm([it.la,it.lo],[b.la,b.lo]));
     const pool=near.length>=5?near.slice(0,G.tier===0?16:11):near.concat(shuffle(CITIES.filter(c=>c!==it&&c.cont!==it.cont)).slice(0,10));
@@ -320,31 +303,38 @@ map.on('click',e=>{
   if(!G.pin){ G.pin=L.marker(ll,{icon:pinIcon('',''),draggable:true}).addTo(marks); G.pin.on('dragend',()=>{ const p=G.pin.getLatLng(); G.guess=[p.lat,((p.lng+540)%360)-180]; }); } else G.pin.setLatLng(ll);
   const b=$('b-lock'); if(b){ b.disabled=false; b.textContent='Lock it in'; }
 });
+const CONT_B={'Europe':[[34,-12],[72,45]],'Asia':[[-12,25],[60,150]],'Africa':[[-36,-20],[38,52]],'North America':[[7,-170],[72,-52]],'South America':[[-56,-82],[13,-34]],'Oceania':[[-48,110],[0,180]]};
 function makePiece(it){
   const base=pieceOf(geomOf(it)); let w=Infinity,s=Infinity,e=-Infinity,n=-Infinity; base.forEach(poly=>poly[0].forEach(p=>{ if(p[1]<w)w=p[1]; if(p[1]>e)e=p[1]; if(p[0]<s)s=p[0]; if(p[0]>n)n=p[0]; }));
-  worldView(); const c=map.getCenter(); const off=[c.lat-(s+n)/2,c.lng-(w+e)/2];
+  const view=G.tier===0||!CONT_B[it.cont]?L.latLngBounds(WORLD_B):L.latLngBounds(CONT_B[it.cont]).extend(L.latLngBounds([[s,w],[n,e]]).pad(.3));
+  map.fitBounds(view,{animate:false});
+  const size=map.getSize(), tc=map.latLngToContainerPoint([(s+n)/2,(w+e)/2]), pw=map.latLngToContainerPoint([s,e]).subtract(map.latLngToContainerPoint([n,w]));
+  const cands=[[.5,.5],[.25,.5],[.75,.5],[.5,.28],[.5,.72]].map(q=>L.point(size.x*q[0],size.y*q[1]));
+  let at=cands[0]; if(Math.abs(at.x-tc.x)<pw.x+40&&Math.abs(at.y-tc.y)<pw.y+40) at=cands.slice(1).reduce((b,p)=>p.distanceTo(tc)>b.distanceTo(tc)?p:b);
+  const c=map.containerPointToLatLng(at); const off=[c.lat-(s+n)/2,c.lng-(w+e)/2];
   G.base=base; G.pbox={w,s,e,n}; G.off=off;
   G.piece=L.polygon(shiftRings(base,off),{className:'drag-piece',color:'#000',weight:2,fillColor:'#F2A93B',fillOpacity:.45,bubblingMouseEvents:false}).addTo(marks);
-  const el=G.piece.getElement(); let drag=null, raf=null;
-  const paint=()=>{ raf=null; if(G.piece) G.piece.setLatLngs(shiftRings(G.base,G.off)); };
-  el.addEventListener('pointerdown',ev=>{ if(G.locked||drag) return; ev.preventDefault(); ev.stopPropagation(); map.dragging.disable(); try{ el.setPointerCapture(ev.pointerId); }catch(x){} el.classList.add('dragging'); const p=map.mouseEventToLatLng(ev); drag={id:ev.pointerId,lat:p.lat,lng:p.lng,off:G.off.slice()}; });
-  el.addEventListener('pointermove',ev=>{ if(!drag||ev.pointerId!==drag.id) return; ev.preventDefault(); const p=map.mouseEventToLatLng(ev); G.off=[drag.off[0]+p.lat-drag.lat,drag.off[1]+p.lng-drag.lng]; if(!raf) raf=requestAnimationFrame(paint); const b=$('b-lock'); if(b&&b.disabled){ b.disabled=false; b.textContent='Lock it in'; } });
-  const end=ev=>{ if(!drag||ev.pointerId!==drag.id) return; drag=null; el.classList.remove('dragging'); map.dragging.enable(); };
-  el.addEventListener('pointerup',end); el.addEventListener('pointercancel',end);
-  ['mousedown','touchstart'].forEach(t=>el.addEventListener(t,ev=>{ ev.stopPropagation(); },{passive:true}));
+  G.handle=L.circleMarker([c.lat,c.lng],{className:'drag-piece',radius:26,stroke:false,fillColor:'#000',fillOpacity:.001,bubblingMouseEvents:false}).addTo(marks);
+  let drag=null, raf=null;
+  const paint=()=>{ raf=null; if(!G.piece) return; G.piece.setLatLngs(shiftRings(G.base,G.off)); if(G.handle) G.handle.setLatLng([(G.pbox.s+G.pbox.n)/2+G.off[0],(G.pbox.w+G.pbox.e)/2+G.off[1]]); };
+  const els=[G.piece.getElement(),G.handle.getElement()];
+  els.forEach(el=>{
+    el.addEventListener('pointerdown',ev=>{ if(G.locked||drag) return; ev.preventDefault(); ev.stopPropagation(); map.dragging.disable(); try{ el.setPointerCapture(ev.pointerId); }catch(x){} els.forEach(x=>x.classList.add('dragging')); const p=map.mouseEventToLatLng(ev); drag={id:ev.pointerId,lat:p.lat,lng:p.lng,off:G.off.slice()}; });
+    el.addEventListener('pointermove',ev=>{ if(!drag||ev.pointerId!==drag.id) return; ev.preventDefault(); const p=map.mouseEventToLatLng(ev); G.off=[drag.off[0]+p.lat-drag.lat,drag.off[1]+p.lng-drag.lng]; if(!raf) raf=requestAnimationFrame(paint); const b=$('b-lock'); if(b&&b.disabled){ b.disabled=false; b.textContent='Lock it in'; } });
+    const end=ev=>{ if(!drag||ev.pointerId!==drag.id) return; drag=null; if(raf) cancelAnimationFrame(raf); paint(); els.forEach(x=>x.classList.remove('dragging')); map.dragging.enable(); };
+    el.addEventListener('pointerup',end); el.addEventListener('pointercancel',end);
+    ['mousedown','touchstart'].forEach(t=>el.addEventListener(t,ev=>{ ev.stopPropagation(); },{passive:true}));
+  });
 }
 function lockIn(){
   if((!G.guess&&!G.puzzle)||G.locked) return; G.locked=true; const it=G.items[G.i];
   if(G.mode==='city'){ const d=havKm(G.guess,[it.la,it.lo]); const pts=d<=50?100:d<=150?90:d<=300?75:d<=600?55:d<=1000?35:d<=2000?15:0;
     L.marker([it.la,it.lo],{icon:pinIcon('true',it.n),interactive:false}).addTo(marks); L.polyline([G.guess,[it.la,it.lo]],{color:'#fff',weight:2,dashArray:'6 6',opacity:.9}).addTo(marks);
     map.flyToBounds(L.latLngBounds([G.guess,[it.la,it.lo]]).pad(.5),{maxZoom:5,duration:.8}); score(pts,`${fmtKm(d)} from ${it.n}`); }
-  if(G.mode==='country'&&G.puzzle){ const b=G.pbox, cLat=(b.s+b.n)/2, cLon=(b.w+b.e)/2; const d=havKm([cLat,cLon],[cLat+G.off[0],cLon+G.off[1]]); const size=Math.max(havKm([cLat,b.w],[cLat,b.e]),havKm([b.s,cLon],[b.n,cLon])); const pts=d<=.05*size+15?100:d<=.12*size+40?85:d<=.25*size+90?65:d<=.5*size+180?40:d<=size+350?15:0;
+  if(G.mode==='country'){ if(G.handle){ marks.removeLayer(G.handle); G.handle=null; } const b=G.pbox, cLat=(b.s+b.n)/2, cLon=(b.w+b.e)/2; const d=havKm([cLat,cLon],[cLat+G.off[0],cLon+G.off[1]]); const size=Math.max(havKm([cLat,b.w],[cLat,b.e]),havKm([b.s,cLon],[b.n,cLon])); const pts=d<=.05*size+25?100:d<=.12*size+60?85:d<=.25*size+120?65:d<=.5*size+250?40:d<=size+450?15:0;
     L.polygon(G.base,{color:'#3FA37A',weight:2.5,fillColor:'#3FA37A',fillOpacity:.15,interactive:false}).addTo(marks);
     if(pts===100){ G.off=[0,0]; G.piece.setLatLngs(G.base); } G.piece.setStyle({fillOpacity:.3});
     map.flyToBounds(L.latLngBounds([[b.s,b.w],[b.n,b.e]]).extend(G.piece.getBounds()).pad(.25),{maxZoom:5,duration:.8}); score(pts,pts===100?'Snapped into place':`Off by ${fmtKm(d)}`); }
-  if(G.mode==='country'&&!G.puzzle){ const isIn=inside(geomOf(it),G.guess[0],G.guess[1]); const d=isIn?0:borderKm(geomOf(it),G.guess[0],G.guess[1]); const pts=isIn?100:d<=150?70:d<=400?45:d<=1000?20:0;
-    L.geoJSON({type:'Feature',geometry:geomOf(it)},{style:{color:'#F2A93B',weight:2.5,fill:true,fillColor:'#F2A93B',fillOpacity:.18},interactive:false}).addTo(marks);
-    map.flyToBounds(L.latLngBounds(bboxOf(geomOf(it))).extend(G.guess).pad(.3),{maxZoom:5,duration:.8}); score(pts,isIn?`Inside ${it.name}`:`${fmtKm(d)} from the border of ${it.name}`); }
 }
 function score(pts,note){
   const it=G.items[G.i]; G.score+=pts; G.rows.push({label:it.name||it.n,pts,note}); $('hud-score').textContent=G.score;
