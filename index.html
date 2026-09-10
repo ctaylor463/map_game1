@@ -343,11 +343,11 @@ function makePiece(it){
 }
 function hintBox(it){
   const b=G.pbox, pw=b.e-b.w, ph=b.n-b.s, W=Math.max(3*pw,12), H=Math.max(3*ph,8);
-  const w=b.w-Math.random()*(W-pw), s=Math.max(-85,b.s-Math.random()*(H-ph)); const box=[[s,w],[Math.min(85,s+H),w+W]];
-  L.rectangle(box,{color:'#F3E9D2',weight:2.5,dashArray:'8 6',fill:false,interactive:false}).addTo(marks);
-  map.fitBounds(box,{padding:[50,50],maxZoom:6,animate:false}); G.off=placeAt(); paintPiece();
-  $('hud-prompt').innerHTML=`Not quite. <em>${it.name}</em> fits inside the dashed box. Try again for half points. <button class="say" id="b-say" aria-label="Say the name again">&#128266;</button>`; $('b-say').addEventListener('click',()=>say(it.name)); say(it.name);
-  const l=$('b-lock'); l.disabled=true; l.textContent='Drag the shape into the box';
+  const w=b.w-Math.random()*(W-pw), s=Math.max(-85,b.s-Math.random()*(H-ph)); const box=L.latLngBounds([[s,w],[Math.min(85,s+H),w+W]]);
+  const inBox=box.contains(L.latLng((b.s+b.n)/2+G.off[0],(b.w+b.e)/2+G.off[1]));
+  if(!inBox){ L.rectangle(box,{color:'#000',weight:2,dashArray:'8 6',fill:false,interactive:false}).addTo(marks); map.fitBounds(box.pad(.5),{padding:[40,40],maxZoom:5.5,animate:false}); G.off=placeAt(); paintPiece(); }
+  $('hud-prompt').innerHTML=(inBox?`Close. Nudge <em>${it.name}</em> into place for half points.`:`Not quite. <em>${it.name}</em> fits inside the dashed box. Try again for half points.`)+` <button class="say" id="b-say" aria-label="Say the name again">&#128266;</button>`; $('b-say').addEventListener('click',()=>say(it.name)); say(it.name);
+  const l=$('b-lock'); l.disabled=true; l.textContent=inBox?'Drag the shape closer':'Drag the shape into the box';
 }
 function lockIn(){
   if((!G.guess&&!G.puzzle)||G.locked) return; G.locked=true; const it=G.items[G.i];
