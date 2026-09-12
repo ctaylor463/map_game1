@@ -143,7 +143,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <div class="orn">&#10022;</div>
     <div class="label">Mode</div>
     <div class="modes" id="modes">
-      <button class="mode on" data-mode="country"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M56 46c-6-14 8-30 26-26 10 2 20-2 28 6 8 10 4 24-8 30-12 6-26 4-38-2-5-2-7-5-8-8z"/><path class="target" transform="translate(66 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="piece" transform="translate(6 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="arrow" d="M47 36h13m-5-5l5 5-5 5"/></svg><b>Drag the country</b><span>Its shape appears as a puzzle piece. Drag it to where it belongs. Easy shows every border, like a jigsaw. Higher levels hide them and start zoomed to the continent.</span></button>
+      <button class="mode on" data-mode="country"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M56 46c-6-14 8-30 26-26 10 2 20-2 28 6 8 10 4 24-8 30-12 6-26 4-38-2-5-2-7-5-8-8z"/><path class="target" transform="translate(66 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="piece" transform="translate(6 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="arrow" d="M47 36h13m-5-5l5 5-5 5"/></svg><b>Drag the country</b><span>Its shape appears as a puzzle piece. Drag it to where it belongs. Easy shows every border, like a jigsaw. Medium hides them. Hard adds the smaller countries.</span></button>
       <button class="mode" data-mode="city"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M14 36c-4-14 12-26 30-22 10 2 18-4 30-2 14 2 22 12 16 24-6 12-20 10-32 14-14 4-28 2-36-6-5-4-7-6-8-8z"/><circle class="ring" cx="58" cy="38" r="12"/><path class="ipin" d="M58 38l-8-12a9.5 9.5 0 1 1 16 0z"/><circle class="dot" cx="58" cy="21" r="3"/></svg><b>Find the city</b><span>Tap where the named city is. Closer is better.</span></button>
       <button class="mode" data-mode="name"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M8 36c-3-12 10-22 26-18 8 2 14-2 22-2 6 0 8 6 6 12-3 10-14 8-24 14-10 6-20 6-26 0-3-3-4-4-4-6z"/><path class="ipin white" d="M36 40l-8-12a9.5 9.5 0 1 1 16 0z"/><text class="q" x="36" y="27" text-anchor="middle">?</text><rect class="chip" x="74" y="10" width="38" height="12" rx="4"/><rect class="txt" x="80" y="15" width="18" height="2.5" rx="1"/><rect class="chip good" x="74" y="26" width="38" height="12" rx="4"/><rect class="txt on" x="80" y="31" width="22" height="2.5" rx="1"/><rect class="chip" x="74" y="42" width="38" height="12" rx="4"/><rect class="txt" x="80" y="47" width="14" height="2.5" rx="1"/></svg><b>Name the city</b><span>A pin appears. Pick the city from six nearby choices. Countries shown only on Easy.</span></button>
       <button class="mode" data-mode="whichCountry"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M6 38c-4-14 10-26 28-22 10 2 18-4 28-2 8 2 10 10 6 18-5 10-16 10-26 14-12 4-24 2-32-4-3-2-4-3-4-4z"/><path class="border" d="M16 34c0-8 10-14 20-12 8 2 14-2 20 2 4 4 2 12-4 16-8 4-16 6-26 2-6-2-10-4-10-8z"/><path class="ipin white" d="M34 36l-8-12a9.5 9.5 0 1 1 16 0z"/><text class="q" x="34" y="23" text-anchor="middle">?</text><rect class="chip" x="74" y="10" width="38" height="12" rx="4"/><rect class="txt" x="80" y="15" width="16" height="2.5" rx="1"/><rect class="chip" x="74" y="26" width="38" height="12" rx="4"/><rect class="txt" x="80" y="31" width="20" height="2.5" rx="1"/><rect class="chip good" x="74" y="42" width="38" height="12" rx="4"/><rect class="txt on" x="80" y="47" width="14" height="2.5" rx="1"/></svg><b>Name the country</b><span>A pin appears. Pick the country from six neighbors.</span></button>
@@ -218,6 +218,8 @@ function cityTier(c){ const cp=BIGPOP[c.c]||0; if(c.p>=5e6||(c.cap&&cp>=25e6)) r
 CITIES.forEach(c=>{ c.t=cityTier(c); });
 const COUNTRY_LIST=COUNTRIES.features.filter(f=>!EXCLUDE.has(f.properties.name)&&f.properties.area>=2500).map(f=>{ const p=f.properties; const t=(p.area>=500000||p.pop>=40e6)?0:(p.area>=80000||p.pop>=8e6)?1:2; return {name:fixName(p.name),raw:p.name,geom:f.geometry,area:p.area,cont:p.cont,cx:p.cx,cy:p.cy,t}; });
 const TIER_DESC=['Capitals, famous cities, and the biggest countries.','Second cities, every capital, and mid-sized countries.','The rest: obscure cities and small countries. Adults welcome.'];
+const TIER_DESC_DRAG=['The biggest countries, with every border drawn.','The same countries, no borders.','Every other country, starting zoomed to its continent.'];
+const tierDesc=()=>(G.mode==='country'?TIER_DESC_DRAG:TIER_DESC)[G.tier];
 
 // ---------- Map ----------
 const map=L.map('map',{crs:L.CRS.EPSG4326,zoomControl:false,attributionControl:false,minZoom:1,maxZoom:8,zoomSnap:.25,wheelPxPerZoomLevel:90,maxBounds:[[-95,-200],[95,200]],maxBoundsViscosity:.8,inertia:true});
@@ -263,10 +265,10 @@ function voiceIcon(){ $('btn-voice').innerHTML=S.voice===false?'&#128263;':'&#12
 $('btn-voice').addEventListener('click',()=>{ S.voice=S.voice===false; save(); voiceIcon(); if(S.voice!==false&&G.mode==='country'&&!G.locked&&G.items[G.i]) say(G.items[G.i].name); }); voiceIcon();
 
 // ---------- Start screen ----------
-document.querySelectorAll('.mode').forEach(b=>b.addEventListener('click',()=>{ G.mode=b.dataset.mode; document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',x===b)); showBest(); }));
-document.querySelectorAll('#tiers button').forEach(b=>b.addEventListener('click',()=>{ G.tier=+b.dataset.tier; document.querySelectorAll('#tiers button').forEach(x=>x.classList.toggle('on',x===b)); $('tier-desc').textContent=TIER_DESC[G.tier]; showBest(); }));
+document.querySelectorAll('.mode').forEach(b=>b.addEventListener('click',()=>{ G.mode=b.dataset.mode; document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',x===b)); $('tier-desc').textContent=tierDesc(); showBest(); }));
+document.querySelectorAll('#tiers button').forEach(b=>b.addEventListener('click',()=>{ G.tier=+b.dataset.tier; document.querySelectorAll('#tiers button').forEach(x=>x.classList.toggle('on',x===b)); $('tier-desc').textContent=tierDesc(); showBest(); }));
 function showBest(){ const b=S.best[bestKey()]; $('best-line').textContent=b?`Best on this mode and level: ${b} of 1000`:'No score yet on this mode and level.'; }
-showBest();
+showBest(); $('tier-desc').textContent=tierDesc();
 $('btn-start').addEventListener('click',()=>{ primeSpeech(); startRound(); });
 $('btn-again').addEventListener('click',()=>{ primeSpeech(); $('end').hidden=true; startRound(); });
 $('btn-menu').addEventListener('click',()=>{ $('end').hidden=true; $('start').hidden=false; showBest(); });
@@ -277,7 +279,7 @@ $('btn-world').addEventListener('click',()=>map.fitBounds([[-58,-170],[78,180]])
 const CHOICE_MODES=new Set(['name','whichCountry']);
 function poolFor(){
   if(G.mode==='country'||G.mode==='whichCountry'){
-    let p=COUNTRY_LIST.filter(c=>c.t===G.tier); if(p.length<10) p=COUNTRY_LIST.filter(c=>c.t<=G.tier);
+    const tiers=G.mode==='country'?(G.tier<=1?[0]:[1,2]):[G.tier]; let p=COUNTRY_LIST.filter(c=>tiers.includes(c.t)); if(p.length<10) p=COUNTRY_LIST.filter(c=>c.t<=G.tier);
     const recent=new Set(S.recent||[]); const fresh=p.filter(c=>!recent.has(c.raw)); if(fresh.length>=10) p=fresh;
     const out=[], byCont={}; for(const c of shuffle(p)){ if((byCont[c.cont]||0)>=3) continue; byCont[c.cont]=(byCont[c.cont]||0)+1; out.push(c); if(out.length===10) break; }
     if(out.length<10) for(const c of shuffle(p)){ if(out.includes(c)) continue; out.push(c); if(out.length===10) break; }
@@ -337,7 +339,7 @@ function placeAt(){
 }
 function makePiece(it){
   const base=pieceOf(geomOf(it)); let w=Infinity,s=Infinity,e=-Infinity,n=-Infinity; base.forEach(poly=>poly[0].forEach(p=>{ if(p[1]<w)w=p[1]; if(p[1]>e)e=p[1]; if(p[0]<s)s=p[0]; if(p[0]>n)n=p[0]; }));
-  const view=G.tier===0||!CONT_B[it.cont]?L.latLngBounds(WORLD_B):L.latLngBounds(CONT_B[it.cont]).extend(L.latLngBounds([[s,w],[n,e]]).pad(.3));
+  const view=G.tier<=1||!CONT_B[it.cont]?L.latLngBounds(WORLD_B):L.latLngBounds(CONT_B[it.cont]).extend(L.latLngBounds([[s,w],[n,e]]).pad(.3));
   map.fitBounds(view,{animate:false});
   G.base=base; G.pbox={w,s,e,n}; G.off=placeAt();
   G.piece=L.polygon(shiftRings(base,G.off),{className:'drag-piece',color:'#000',weight:2,fillColor:'#C9962E',fillOpacity:.5,bubblingMouseEvents:false}).addTo(marks);
