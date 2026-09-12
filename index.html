@@ -143,7 +143,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <div class="orn">&#10022;</div>
     <div class="label">Mode</div>
     <div class="modes" id="modes">
-      <button class="mode on" data-mode="country"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M56 46c-6-14 8-30 26-26 10 2 20-2 28 6 8 10 4 24-8 30-12 6-26 4-38-2-5-2-7-5-8-8z"/><path class="target" transform="translate(66 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="piece" transform="translate(6 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="arrow" d="M47 36h13m-5-5l5 5-5 5"/></svg><b>Drag the country</b><span>Its shape appears as a puzzle piece. Drag it to where it belongs. Higher levels start zoomed to the continent.</span></button>
+      <button class="mode on" data-mode="country"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M56 46c-6-14 8-30 26-26 10 2 20-2 28 6 8 10 4 24-8 30-12 6-26 4-38-2-5-2-7-5-8-8z"/><path class="target" transform="translate(66 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="piece" transform="translate(6 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="arrow" d="M47 36h13m-5-5l5 5-5 5"/></svg><b>Drag the country</b><span>Its shape appears as a puzzle piece. Drag it to where it belongs. Easy shows every border, like a jigsaw. Higher levels hide them and start zoomed to the continent.</span></button>
       <button class="mode" data-mode="city"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M14 36c-4-14 12-26 30-22 10 2 18-4 30-2 14 2 22 12 16 24-6 12-20 10-32 14-14 4-28 2-36-6-5-4-7-6-8-8z"/><circle class="ring" cx="58" cy="38" r="12"/><path class="ipin" d="M58 38l-8-12a9.5 9.5 0 1 1 16 0z"/><circle class="dot" cx="58" cy="21" r="3"/></svg><b>Find the city</b><span>Tap where the named city is. Closer is better.</span></button>
       <button class="mode" data-mode="name"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M8 36c-3-12 10-22 26-18 8 2 14-2 22-2 6 0 8 6 6 12-3 10-14 8-24 14-10 6-20 6-26 0-3-3-4-4-4-6z"/><path class="ipin white" d="M36 40l-8-12a9.5 9.5 0 1 1 16 0z"/><text class="q" x="36" y="27" text-anchor="middle">?</text><rect class="chip" x="74" y="10" width="38" height="12" rx="4"/><rect class="txt" x="80" y="15" width="18" height="2.5" rx="1"/><rect class="chip good" x="74" y="26" width="38" height="12" rx="4"/><rect class="txt on" x="80" y="31" width="22" height="2.5" rx="1"/><rect class="chip" x="74" y="42" width="38" height="12" rx="4"/><rect class="txt" x="80" y="47" width="14" height="2.5" rx="1"/></svg><b>Name the city</b><span>A pin appears. Pick the city from six nearby choices. Countries shown only on Easy.</span></button>
       <button class="mode" data-mode="whichCountry"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M6 38c-4-14 10-26 28-22 10 2 18-4 28-2 8 2 10 10 6 18-5 10-16 10-26 14-12 4-24 2-32-4-3-2-4-3-4-4z"/><path class="border" d="M16 34c0-8 10-14 20-12 8 2 14-2 20 2 4 4 2 12-4 16-8 4-16 6-26 2-6-2-10-4-10-8z"/><path class="ipin white" d="M34 36l-8-12a9.5 9.5 0 1 1 16 0z"/><text class="q" x="34" y="23" text-anchor="middle">?</text><rect class="chip" x="74" y="10" width="38" height="12" rx="4"/><rect class="txt" x="80" y="15" width="16" height="2.5" rx="1"/><rect class="chip" x="74" y="26" width="38" height="12" rx="4"/><rect class="txt" x="80" y="31" width="20" height="2.5" rx="1"/><rect class="chip good" x="74" y="42" width="38" height="12" rx="4"/><rect class="txt on" x="80" y="47" width="14" height="2.5" rx="1"/></svg><b>Name the country</b><span>A pin appears. Pick the country from six neighbors.</span></button>
@@ -240,8 +240,12 @@ const WORLD_B=[[-58,-170],[78,180]];
 function worldView(){ map.fitBounds(WORLD_B,{animate:false}); }
 worldView();
 const marks=L.layerGroup().addTo(map);
-const HI={}; let hiPromise=null;
-function loadHi(){ if(!hiPromise) hiPromise=fetch('countries_hi.json').then(r=>r.json()).then(gj=>{ gj.features.forEach(f=>{ HI[f.properties.name]=f.geometry; }); }).catch(()=>{}); return hiPromise; }
+const HI={}; let hiPromise=null, HI_GJ=null, borders=null;
+function loadHi(){ if(!hiPromise) hiPromise=fetch('countries_hi.json').then(r=>r.json()).then(gj=>{ HI_GJ=gj; gj.features.forEach(f=>{ HI[f.properties.name]=f.geometry; }); }).catch(()=>{}); return hiPromise; }
+map.createPane('borders'); map.getPane('borders').style.zIndex=350;
+const borderStyle=()=>({color:'#3B2A14',weight:map.getZoom()<3?.8:1.2,opacity:.6,fill:false});
+function showBorders(on){ if(on&&HI_GJ&&!borders) borders=L.geoJSON(HI_GJ,{pane:'borders',renderer:L.canvas({pane:'borders'}),style:borderStyle,interactive:false}); if(!borders) return; if(on){ if(!map.hasLayer(borders)) borders.addTo(map); } else if(map.hasLayer(borders)) map.removeLayer(borders); }
+map.on('zoomend',()=>{ if(borders&&map.hasLayer(borders)) borders.setStyle(borderStyle); });
 const geomOf=it=>HI[it.raw]||geomOf(it);
 setTimeout(loadHi,1500);
 function pinIcon(cls,label){ return L.divIcon({className:'',html:`<div class="pin ${cls}">${label?`<span class="lbl">${label}</span>`:''}</div>`,iconSize:[26,26],iconAnchor:[13,13]}); }
@@ -272,13 +276,20 @@ $('btn-world').addEventListener('click',()=>map.fitBounds([[-58,-170],[78,180]])
 // ---------- Round ----------
 const CHOICE_MODES=new Set(['name','whichCountry']);
 function poolFor(){
-  if(G.mode==='country'||G.mode==='whichCountry'){ let p=COUNTRY_LIST.filter(c=>c.t===G.tier); if(p.length<10) p=COUNTRY_LIST.filter(c=>c.t<=G.tier); return shuffle(p).slice(0,10); }
+  if(G.mode==='country'||G.mode==='whichCountry'){
+    let p=COUNTRY_LIST.filter(c=>c.t===G.tier); if(p.length<10) p=COUNTRY_LIST.filter(c=>c.t<=G.tier);
+    const recent=new Set(S.recent||[]); const fresh=p.filter(c=>!recent.has(c.raw)); if(fresh.length>=10) p=fresh;
+    const out=[], byCont={}; for(const c of shuffle(p)){ if((byCont[c.cont]||0)>=3) continue; byCont[c.cont]=(byCont[c.cont]||0)+1; out.push(c); if(out.length===10) break; }
+    if(out.length<10) for(const c of shuffle(p)){ if(out.includes(c)) continue; out.push(c); if(out.length===10) break; }
+    S.recent=(S.recent||[]).concat(out.map(c=>c.raw)).slice(-20); save();
+    return out;
+  }
   let p=CITIES.filter(c=>c.t===G.tier); if(p.length<10) p=CITIES.filter(c=>c.t<=G.tier);
   const out=[], seen=new Set(); for(const c of shuffle(p)){ if(seen.has(c.c)&&out.length<8&&Math.random()<0.6) continue; seen.add(c.c); out.push(c); if(out.length===10) break; } return out;
 }
 function startRound(){
   G.items=poolFor(); G.i=0; G.score=0; G.rows=[]; $('start').hidden=true; $('hud').hidden=false; $('bar').hidden=false; $('topright').hidden=false; $('btn-voice').hidden=G.mode!=='country'; worldView();
-  if(G.mode==='country'){ $('hud-prompt').textContent='Loading country shapes'; $('bar').innerHTML=''; loadHi().then(nextItem); } else nextItem();
+  if(G.mode==='country'){ $('hud-prompt').textContent='Loading country shapes'; $('bar').innerHTML=''; loadHi().then(()=>{ showBorders(G.tier===0); nextItem(); }); } else { showBorders(false); nextItem(); }
 }
 function nextItem(){
   marks.clearLayers(); G.guess=null; G.pin=null; G.piece=null; G.handle=null; G.locked=false; G.tries=0; G.puzzle=(G.mode==='country'); $('hud-result').hidden=true; $('hud-shape').hidden=true;
@@ -370,7 +381,7 @@ function score(pts,note){
   $('b-next').addEventListener('click',()=>{ G.i++; nextItem(); });
 }
 function endRound(quit){
-  $('hud').hidden=true; $('bar').hidden=true; $('topright').hidden=true; marks.clearLayers(); worldView();
+  $('hud').hidden=true; $('bar').hidden=true; $('topright').hidden=true; marks.clearLayers(); showBorders(false); worldView();
   if(quit&&G.rows.length===0){ $('start').hidden=false; return; }
   const total=G.score; const k=bestKey(); const prev=S.best[k]||0; const isBest=!quit&&total>prev; if(isBest){ S.best[k]=total; save(); }
   $('end-score').innerHTML=`${total}<small>of ${G.rows.length*100}</small>`; $('end-best').textContent=isBest?'New best on this mode and level.':(prev?`Best: ${prev}`:'');
