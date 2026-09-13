@@ -145,9 +145,9 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <div class="label">Mode</div>
     <div class="modes" id="modes">
       <button class="mode on" data-mode="country"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M56 46c-6-14 8-30 26-26 10 2 20-2 28 6 8 10 4 24-8 30-12 6-26 4-38-2-5-2-7-5-8-8z"/><path class="target" transform="translate(66 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="piece" transform="translate(6 22)" d="M2 10C4 3 12 0 20 3c6 2 12-2 17 3 5 6 1 13-6 15-5 2-8 7-15 6-8-1-15-7-14-17z"/><path class="arrow" d="M47 36h13m-5-5l5 5-5 5"/></svg><b>Drag the country</b><span>Drag the puzzle piece to where it belongs. Easy shows every border.</span></button>
+      <button class="mode" data-mode="whichCountry"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M6 38c-4-14 10-26 28-22 10 2 18-4 28-2 8 2 10 10 6 18-5 10-16 10-26 14-12 4-24 2-32-4-3-2-4-3-4-4z"/><path class="border" d="M16 34c0-8 10-14 20-12 8 2 14-2 20 2 4 4 2 12-4 16-8 4-16 6-26 2-6-2-10-4-10-8z"/><path class="ipin white" d="M34 36l-8-12a9.5 9.5 0 1 1 16 0z"/><text class="q" x="34" y="23" text-anchor="middle">?</text><rect class="chip" x="74" y="10" width="38" height="12" rx="4"/><rect class="txt" x="80" y="15" width="16" height="2.5" rx="1"/><rect class="chip" x="74" y="26" width="38" height="12" rx="4"/><rect class="txt" x="80" y="31" width="20" height="2.5" rx="1"/><rect class="chip good" x="74" y="42" width="38" height="12" rx="4"/><rect class="txt on" x="80" y="47" width="14" height="2.5" rx="1"/></svg><b>Name the country</b><span>A pin drops. Pick the country from six neighbors. Easy outlines it.</span></button>
       <button class="mode" data-mode="city"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M14 36c-4-14 12-26 30-22 10 2 18-4 30-2 14 2 22 12 16 24-6 12-20 10-32 14-14 4-28 2-36-6-5-4-7-6-8-8z"/><circle class="ring" cx="58" cy="38" r="12"/><path class="ipin" d="M58 38l-8-12a9.5 9.5 0 1 1 16 0z"/><circle class="dot" cx="58" cy="21" r="3"/></svg><b>Find the city</b><span>Tap where the named city is. Closer is better.</span></button>
       <button class="mode" data-mode="name"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M8 36c-3-12 10-22 26-18 8 2 14-2 22-2 6 0 8 6 6 12-3 10-14 8-24 14-10 6-20 6-26 0-3-3-4-4-4-6z"/><path class="ipin white" d="M36 40l-8-12a9.5 9.5 0 1 1 16 0z"/><text class="q" x="36" y="27" text-anchor="middle">?</text><rect class="chip" x="74" y="10" width="38" height="12" rx="4"/><rect class="txt" x="80" y="15" width="18" height="2.5" rx="1"/><rect class="chip good" x="74" y="26" width="38" height="12" rx="4"/><rect class="txt on" x="80" y="31" width="22" height="2.5" rx="1"/><rect class="chip" x="74" y="42" width="38" height="12" rx="4"/><rect class="txt" x="80" y="47" width="14" height="2.5" rx="1"/></svg><b>Name the city</b><span>A pin drops. Pick the city from six choices.</span></button>
-      <button class="mode" data-mode="whichCountry"><svg class="ico" viewBox="0 0 120 64" aria-hidden="true"><path class="land" d="M6 38c-4-14 10-26 28-22 10 2 18-4 28-2 8 2 10 10 6 18-5 10-16 10-26 14-12 4-24 2-32-4-3-2-4-3-4-4z"/><path class="border" d="M16 34c0-8 10-14 20-12 8 2 14-2 20 2 4 4 2 12-4 16-8 4-16 6-26 2-6-2-10-4-10-8z"/><path class="ipin white" d="M34 36l-8-12a9.5 9.5 0 1 1 16 0z"/><text class="q" x="34" y="23" text-anchor="middle">?</text><rect class="chip" x="74" y="10" width="38" height="12" rx="4"/><rect class="txt" x="80" y="15" width="16" height="2.5" rx="1"/><rect class="chip" x="74" y="26" width="38" height="12" rx="4"/><rect class="txt" x="80" y="31" width="20" height="2.5" rx="1"/><rect class="chip good" x="74" y="42" width="38" height="12" rx="4"/><rect class="txt on" x="80" y="47" width="14" height="2.5" rx="1"/></svg><b>Name the country</b><span>A pin drops. Pick the country from six neighbors.</span></button>
     </div>
     <div class="label">Difficulty</div>
     <div class="seg" id="tiers">
@@ -220,7 +220,8 @@ CITIES.forEach(c=>{ c.t=cityTier(c); });
 const COUNTRY_LIST=COUNTRIES.features.filter(f=>!EXCLUDE.has(f.properties.name)&&f.properties.area>=2500).map(f=>{ const p=f.properties; const t=(p.area>=500000||p.pop>=40e6)?0:(p.area>=80000||p.pop>=8e6)?1:2; return {name:fixName(p.name),raw:p.name,geom:f.geometry,area:p.area,cont:p.cont,cx:p.cx,cy:p.cy,t}; });
 const TIER_DESC=['Capitals, famous cities, and the biggest countries.','Second cities, every capital, and mid-sized countries.','The rest: obscure cities and small countries. Adults welcome.'];
 const TIER_DESC_DRAG=['The biggest countries, with every border drawn.','The same countries, no borders.','Every other country, starting zoomed to its continent.'];
-const tierDesc=()=>(G.mode==='country'?TIER_DESC_DRAG:TIER_DESC)[G.tier];
+const TIER_DESC_WHICH=['The biggest countries, with the border outlined.','Mid-sized countries, no outline.','Small countries. Adults welcome.'];
+const tierDesc=()=>(G.mode==='country'?TIER_DESC_DRAG:G.mode==='whichCountry'?TIER_DESC_WHICH:TIER_DESC)[G.tier];
 
 // ---------- Map ----------
 const map=L.map('map',{crs:L.CRS.EPSG4326,zoomControl:false,attributionControl:false,minZoom:1,maxZoom:8,zoomSnap:.25,wheelPxPerZoomLevel:90,maxBounds:[[-95,-200],[95,200]],maxBoundsViscosity:.8,inertia:true});
@@ -291,8 +292,8 @@ function poolFor(){
   const out=[], seen=new Set(); for(const c of shuffle(p)){ if(seen.has(c.c)&&out.length<8&&Math.random()<0.6) continue; seen.add(c.c); out.push(c); if(out.length===10) break; } return out;
 }
 function startRound(){
-  G.items=poolFor(); G.i=0; G.score=0; G.rows=[]; $('start').hidden=true; $('hud').hidden=false; $('bar').hidden=false; $('topright').hidden=false; $('btn-voice').hidden=G.mode!=='country'; worldView();
-  if(G.mode==='country'){ $('hud-prompt').textContent='Loading country shapes'; $('bar').innerHTML=''; loadHi().then(()=>{ showBorders(G.tier===0); nextItem(); }); } else { showBorders(false); nextItem(); }
+  G.items=poolFor(); G.i=0; G.score=0; G.rows=[]; $('start').hidden=true; $('hud').hidden=false; $('bar').hidden=false; $('topright').hidden=false; $('btn-voice').hidden=!(G.mode==='country'||G.mode==='whichCountry'); worldView();
+  if(G.mode==='country'||G.mode==='whichCountry'){ $('hud-prompt').textContent='Loading country shapes'; $('bar').innerHTML=''; loadHi().then(()=>{ showBorders(G.mode==='country'&&G.tier===0); nextItem(); }); } else { showBorders(false); nextItem(); }
 }
 function nextItem(){
   marks.clearLayers(); G.guess=null; G.pin=null; G.piece=null; G.handle=null; G.locked=false; G.tries=0; G.puzzle=(G.mode==='country'); $('hud-result').hidden=true; $('hud-shape').hidden=true;
@@ -309,6 +310,7 @@ function nextItem(){
   }
   if(G.mode==='whichCountry'){ $('hud-prompt').innerHTML=`Which country is at the <em>white pin</em>?`;
     const inCountry=CITIES.filter(c=>c.c===it.raw); const at=inCountry.length?pick(inCountry):null; const lat=at?at.la:it.cy, lon=at?at.lo:it.cx;
+    if(G.tier===0) L.polygon(pieceOf(geomOf(it)),{color:'#000',weight:1.5,opacity:.85,fill:false,interactive:false}).addTo(marks);
     L.marker([lat,lon],{icon:pinIcon('ask',''),interactive:false}).addTo(marks); map.flyTo([lat,lon],Math.max(map.getZoom(),3.5),{duration:.8});
     const near=COUNTRY_LIST.filter(c=>c!==it&&c.cont===it.cont).sort((a,b)=>havKm([it.cy,it.cx],[a.cy,a.cx])-havKm([it.cy,it.cx],[b.cy,b.cx]));
     const pool=near.length>=5?near.slice(0,9):near.concat(shuffle(COUNTRY_LIST.filter(c=>c!==it&&c.cont!==it.cont)).slice(0,8));
@@ -377,6 +379,7 @@ function lockIn(){
 }
 function score(pts,note){
   const it=G.items[G.i]; G.score+=pts; G.rows.push({label:it.name||it.n,pts,note}); $('hud-score').textContent=G.score;
+  if(G.mode==='country'||G.mode==='whichCountry') setTimeout(()=>{ if(G.items[G.i]===it&&!$('hud').hidden) say(it.name); },1000);
   const r=$('hud-result'); r.hidden=false; r.innerHTML=`<span class="pts ${pts===0?'zero':pts===100?'full':''}">+${pts}</span><b>${note}</b>`;
   if(CHOICE_MODES.has(G.mode)&&!G.locked) return;
   const nextHTML=`<button class="btn primary" id="b-next" style="min-width:200px;grid-column:1/-1;justify-content:center">${G.i+1>=G.items.length?'See results':'Next'}</button>`;
